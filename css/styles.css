@@ -57,6 +57,10 @@
     --spacing-16: 4rem;
 }
 
+html {
+    font-size: 16px; /* Base font size */
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
@@ -68,6 +72,19 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 15px; /* Slightly smaller base font size on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px; /* Even smaller base font size on mobile */
+    }
 }
 
 ::selection {
@@ -254,6 +271,23 @@ nav ul li a:hover::after, nav ul li a.active::after {
 main {
     margin-top: 90px;
     padding: var(--spacing-6) var(--spacing-4);
+    min-height: calc(100vh - 180px);
+}
+
+@media (max-height: 600px) {
+    main {
+        margin-top: 80px;
+    }
+    
+    .hero {
+        padding: var(--spacing-8) var(--spacing-4);
+        margin-bottom: var(--spacing-8);
+        min-height: 150px;
+    }
+    
+    .services-container {
+        margin-top: var(--spacing-4);
+    }
 }
 
 /* Hero Section */
@@ -267,6 +301,10 @@ main {
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero::before {
@@ -285,7 +323,7 @@ main {
 }
 
 .hero-content h2 {
-    font-size: 2.75rem;
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
     margin-bottom: var(--spacing-6);
     font-weight: 700;
     transition: font-size 0.3s ease;
@@ -310,7 +348,7 @@ main {
 }
 
 .services h2 {
-    font-size: 2.2rem;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
     margin-bottom: var(--spacing-12);
     position: relative;
     display: inline-block;
@@ -391,7 +429,7 @@ main {
 }
 
 .service-card h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
     margin-bottom: var(--spacing-4);
     color: var(--text-color);
     font-weight: 600;
@@ -568,7 +606,7 @@ main {
 }
 
 .how-it-works h2 {
-    font-size: 2.2rem;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
     margin-bottom: var(--spacing-12);
     position: relative;
     display: inline-block;
@@ -862,6 +900,30 @@ main {
 }
 
 /* Responsive Styles - Arranged from largest to smallest screens */
+/* Extra large screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .services-container {
+        gap: var(--spacing-12);
+    }
+    
+    .service-card {
+        width: 400px;
+    }
+    
+    .hero-content h2 {
+        font-size: 3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.25rem;
+    }
+}
+
+/* Large screens */
 @media (max-width: 1200px) {
     .container {
         max-width: 95%;
@@ -879,12 +941,27 @@ main {
 @media (max-width: 992px) {
     .services-container {
         gap: var(--spacing-6);
+        justify-content: center;
     }
     
     .service-card {
         width: calc(50% - var(--spacing-6));
         max-width: 400px;
         min-height: auto;
+        padding: var(--spacing-6) var(--spacing-4);
+    }
+    
+    .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .qr-container {
+        margin: var(--spacing-4) 0;
+    }
+    
+    .service-features {
+        margin-top: var(--spacing-6);
     }
     
     .hero-content h2 {
@@ -905,15 +982,20 @@ main {
         flex-direction: row;
         padding: var(--spacing-2) var(--spacing-3);
         gap: var(--spacing-2);
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
     
     .banner-title {
         padding: 0 var(--spacing-1);
+        flex: 1 1 auto;
+        min-width: 200px;
     }
     
     .banner-title h1 {
         font-size: 1.4rem;
-        white-space: nowrap;
+        white-space: normal;
+        overflow-wrap: break-word;
     }
     
     .slogan {
@@ -924,38 +1006,52 @@ main {
         height: 45px;
     }
     
+    .right-logos {
+        flex: 0 0 auto;
+    }
+    
     header {
         padding: var(--spacing-3) var(--spacing-4);
-        top: 110px;
+        top: 70px;
+        flex-wrap: wrap;
     }
     
     nav ul {
         justify-content: center;
         gap: var(--spacing-2);
+        flex-wrap: wrap;
+        padding: var(--spacing-1);
     }
     
     nav ul li a {
         padding: var(--spacing-2) var(--spacing-2);
         font-size: 0.9rem;
+        display: inline-block;
+        margin-bottom: 2px;
     }
     
     main {
-        margin-top: 220px;
+        margin-top: 130px;
         padding: var(--spacing-4) var(--spacing-3);
     }
     
     .hero {
         padding: var(--spacing-8) var(--spacing-4);
         margin-bottom: var(--spacing-8);
+        margin-top: var(--spacing-3);
+        border-radius: var(--border-radius);
     }
     
     .hero-content h2 {
         font-size: 1.8rem;
         margin-bottom: var(--spacing-4);
+        line-height: 1.3;
     }
     
     .hero-content p {
         font-size: 1rem;
+        max-width: 100%;
+        padding: 0 var(--spacing-2);
     }
     
     .services {
@@ -965,12 +1061,23 @@ main {
     .services h2, .how-it-works h2 {
         font-size: 1.8rem;
         margin-bottom: var(--spacing-8);
+        padding: 0 var(--spacing-2);
+        width: 100%;
+    }
+    
+    .services h2::after, .how-it-works h2::after {
+        width: 50px;
     }
     
     .service-card {
         width: 100%;
         max-width: 400px;
         padding: var(--spacing-6);
+        margin: 0 auto;
+    }
+    
+    .services-container {
+        gap: var(--spacing-6);
     }
     
     .steps-container {
@@ -998,15 +1105,26 @@ main {
     
     header {
         top: 90px;
+        padding: var(--spacing-2) var(--spacing-2);
     }
     
     nav ul {
         flex-wrap: wrap;
+        gap: var(--spacing-1);
     }
     
     main {
-        margin-top: 120px;
+        margin-top: 140px;
         padding: var(--spacing-3) var(--spacing-2);
+    }
+    
+    .container {
+        padding: 0 var(--spacing-2);
+    }
+    
+    nav ul li a {
+        padding: var(--spacing-1) var(--spacing-2);
+        font-size: 0.85rem;
     }
     
     .services-container {
@@ -1020,6 +1138,7 @@ main {
         max-width: 100%;
         box-shadow: var(--shadow);
         margin-bottom: 0;
+        padding: var(--spacing-4);
     }
     
     .qr-container {
@@ -1029,12 +1148,20 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: var(--spacing-4);
     }
     
     .qr-code {
         width: 150px;
         height: 150px;
         margin: 0 auto;
+        object-fit: contain;
+    }
+    
+    .service-icon {
+        font-size: 2.5rem;
+        padding: var(--spacing-3);
+        margin-bottom: var(--spacing-3);
     }
     
     .hero-content h2 {
@@ -1055,15 +1182,23 @@ main {
 /* Extra small screens */
 @media (max-width: 480px) {
     .banner {
-        flex-direction: column;
+        flex-direction: row;
         padding: var(--spacing-2) var(--spacing-2);
         gap: var(--spacing-2);
         align-items: center;
+        justify-content: space-between;
+    }
+    
+    .logo-container, .right-logos {
+        flex: 0 0 auto;
     }
     
     .banner-title {
         text-align: center;
         padding: var(--spacing-1) 0;
+        flex: 1 1 100%;
+        order: 3;
+        margin-top: var(--spacing-2);
     }
     
     .banner-title h1 {
@@ -1076,11 +1211,19 @@ main {
     }
     
     .right-logos {
-        margin-top: var(--spacing-1);
+        margin-top: 0;
     }
     
     .kite-logo, .ips-logo {
         height: 35px;
+    }
+    
+    header {
+        top: 90px;
+    }
+    
+    main {
+        margin-top: 150px;
     }
     
     .service-card {
@@ -1092,6 +1235,20 @@ main {
         height: 130px;
     }
     
+    .service-features {
+        padding: var(--spacing-3) var(--spacing-2) var(--spacing-1);
+        margin-top: var(--spacing-4);
+    }
+    
+    .feature {
+        margin-bottom: var(--spacing-2);
+        padding: var(--spacing-1) 0;
+    }
+    
+    .feature i {
+        margin-right: var(--spacing-2);
+    }
+    
     .social-links a {
         width: 32px;
         height: 32px;
@@ -1099,6 +1256,7 @@ main {
     }
 }
 
+/* Very small screens */
 @media (max-width: 375px) {
     .banner-title h1 {
         font-size: 1.1rem;
@@ -1126,6 +1284,55 @@ main {
     .hero-content h2 {
         font-size: 1.5rem;
     }
+    
+    header {
+        top: 80px;
+    }
+    
+    main {
+        margin-top: 130px;
+    }
+}
+
+/* Tiny screens */
+@media (max-width: 320px) {
+    .banner-title h1 {
+        font-size: 1rem;
+    }
+    
+    .banner {
+        padding: var(--spacing-1);
+    }
+    
+    .kite-logo, .ips-logo {
+        height: 30px;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.85rem;
+    }
+    
+    nav ul li a {
+        padding: var(--spacing-1);
+        font-size: 0.8rem;
+    }
+    
+    .service-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .qr-code {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .service-features {
+        font-size: 0.85rem;
+    }
 }
 
 /* Landscape mode on mobile */
@@ -1135,6 +1342,7 @@ main {
         flex-direction: row;
         justify-content: space-between;
         height: auto;
+        position: absolute;
     }
     
     .logo-container, .right-logos {
@@ -1149,42 +1357,50 @@ main {
         height: 36px;
     }
     
+    header {
+        top: 40px;
+        position: absolute;
+    }
+    
     main {
-        margin-top: 65px;
-    }
-    
-    .hero {
-        padding: var(--spacing-6) var(--spacing-4);
-    }
-    
-    .hero-content h2 {
-        font-size: 1.8rem;
-        margin-bottom: var(--spacing-3);
-    }
-    
-    .services-container {
-        gap: var(--spacing-4);
+        margin-top: 0;
+        padding-top: 100px;
     }
     
     .hero {
         padding: var(--spacing-4);
         margin-bottom: var(--spacing-6);
+        min-height: 0;
     }
     
     .hero-content h2 {
         font-size: 1.5rem;
+        margin-bottom: var(--spacing-2);
     }
     
     .hero-content p {
         font-size: 0.95rem;
     }
     
+    .services {
+        padding-top: var(--spacing-2);
+    }
+    
     .services h2, .how-it-works h2 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-6);
+    }
+    
+    .services-container {
+        gap: var(--spacing-4);
+        flex-direction: row;
+        flex-wrap: wrap;
     }
     
     .service-card {
-        padding: var(--spacing-6) var(--spacing-4);
+        padding: var(--spacing-4) var(--spacing-3);
+        width: calc(50% - var(--spacing-4));
+        min-width: 280px;
     }
     
     .step {
